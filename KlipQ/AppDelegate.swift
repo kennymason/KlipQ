@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     }
     
     var mode : Mode = .base
-    private var cursor : Int = 0
+    private var cursor : Int = 1
     
     private var statusItem: NSStatusItem!
     private var menubarIcon: NSImage!
@@ -96,8 +96,10 @@ class AppDelegate: NSObject, NSApplicationDelegate
     func createKlipItem(item: NSPasteboardItem)
     {
         if let copiedText = item.string(forType: .string) {
-            history.addItem(copiedText);
-            menu.update(history);
+            if copiedText != history.getItem(at: cursor - 1) {
+                history.addItem(copiedText);
+                menu.update(history);
+            }
         }
         
     }
@@ -110,10 +112,19 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
     }
 
-    // paste item
-    func paste()
-    {
+    // handling menu item actions
+    @objc func trigger(_ sender: NSMenuItem) {
+        // Handle menu item action here
+        let index = sender.tag
         
+        cursor = index;
+        
+        changeStatusBarButton(number: index);
+        
+        // copy item to pasteboard
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(history.getItem(at: index - 1) ?? "", forType: .string)
     }
     
     // set menubar icon
@@ -148,7 +159,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     func pop ()
     {
         // Pop (paste) from current cursor. Popped items are not removed. Cursor++
-        paste()
+//        paste()
         setCursor(num: cursor + 1)
     }
     

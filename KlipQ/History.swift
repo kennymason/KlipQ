@@ -8,8 +8,13 @@
 import Foundation
 
 class History {
-    var items: [String] = []
+    private var items: [String] = []
     private let maxCount = 20
+    
+    init() {
+        // Create an array with 20 empty strings
+        self.items = Array(repeating: "", count: 20)
+    }
     
     func addItem(_ item: String) {
         items.insert(item, at: 0)
@@ -31,5 +36,9 @@ class History {
     
     func clear() {
         items.removeAll()
+    }
+    
+    var count: Int {
+        return items.count
     }
 }
