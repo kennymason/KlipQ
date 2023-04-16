@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		93068D71289E00C60063CDC9 /* Notification+Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93068D70289E00C60063CDC9 /* Notification+Pasteboard.swift */; };
+		9312D6BD29EC9EFD0067F1AB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312D6BC29EC9EFD0067F1AB /* History.swift */; };
 		9358D9242886470400BC9441 /* PasteMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9358D9232886470400BC9441 /* PasteMenu.swift */; };
 		9358D9262886630900BC9441 /* PasteboardPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9358D9252886630900BC9441 /* PasteboardPoller.swift */; };
 		93858BCA287E39DA0033D140 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93858BC9287E39DA0033D140 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		93068D70289E00C60063CDC9 /* Notification+Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Pasteboard.swift"; sourceTree = "<group>"; };
+		9312D6BC29EC9EFD0067F1AB /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		9358D9232886470400BC9441 /* PasteMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteMenu.swift; sourceTree = "<group>"; };
 		9358D9252886630900BC9441 /* PasteboardPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardPoller.swift; sourceTree = "<group>"; };
 		93858BC6287E39DA0033D140 /* KlipQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KlipQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,7 @@
 				93068D72289E04C70063CDC9 /* Extensions */,
 				93858BDA287E41B70033D140 /* Info.plist */,
 				93858BC9287E39DA0033D140 /* AppDelegate.swift */,
+				9312D6BC29EC9EFD0067F1AB /* History.swift */,
 				93858BCB287E39DA0033D140 /* ViewController.swift */,
 				93858BCD287E39DC0033D140 /* Assets.xcassets */,
 				93858BD2287E39DC0033D140 /* KlipQ.entitlements */,
@@ -108,7 +111,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					93858BC5287E39DA0033D140 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -151,6 +154,7 @@
 			files = (
 				9358D9262886630900BC9441 /* PasteboardPoller.swift in Sources */,
 				9358D9242886470400BC9441 /* PasteMenu.swift in Sources */,
+				9312D6BD29EC9EFD0067F1AB /* History.swift in Sources */,
 				93858BCC287E39DA0033D140 /* ViewController.swift in Sources */,
 				93858BCA287E39DA0033D140 /* AppDelegate.swift in Sources */,
 				93068D71289E00C60063CDC9 /* Notification+Pasteboard.swift in Sources */,
@@ -282,6 +286,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KlipQ/KlipQ.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -309,6 +314,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KlipQ/KlipQ.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

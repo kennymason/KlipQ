@@ -14,12 +14,14 @@ class AppDelegate: NSObject, NSApplicationDelegate
 //        case
 //    }
     
+    // pasting modes - basic, stack, queue
     enum Mode
     {
         case base
         case stack
     }
     
+    // menubar icon based on current paste cursor
     enum Icon
     {
         case basic(String, String)
@@ -35,16 +37,20 @@ class AppDelegate: NSObject, NSApplicationDelegate
     private var iconConfig: NSImage.SymbolConfiguration!
     
     private var poller: PasteboardPoller!
+    
+    private var menu: PasteMenu!
+    private var history: History!
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
-        
+        // adds listener for new pasteboard items
         NotificationCenter.default.addObserver(self, selector: #selector(onNewItem), name: .NewPasteboardItem, object: nil)
-        
+        // initialize pasteboard poller - polls the pasteboard for changes
         poller = PasteboardPoller(pasteboard: NSPasteboard .general, changeCount: -1)
-        
+    
+        // sets menubar item
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        
+        // sets icon for statusItem
         //TODO: clean up initial icon configuration
         // macOS 13+ only - "list.bullet.clipboard" beta SF Symbol
         menubarIcon = NSImage(
@@ -55,19 +61,23 @@ class AppDelegate: NSObject, NSApplicationDelegate
         if let button = statusItem.button {
             button.image = menubarIcon.withSymbolConfiguration(iconConfig)
         }
-//            let config = NSImage.SymbolConfiguration(pointSize: 15, weight: .regular, scale: .large)
-//            config = config.applying(.init(paletteColors: [.controlTextColor, .controlAccentColor]))
-//            var color : NSColor! = .
         
-        setupMenus()
+        // creates menu
+        menu = PasteMenu();
+        statusItem.menu = menu;
+        
+        // initialize history array
+        history = History();
     }
     
+    // shutdown processes
     func applicationWillTerminate(_ notification: Notification)
     {
         // TODO - tear down app, invalidate timers (!!!)
         poller.invalidate()
     }
-    
+
+    // new pasteboard (copied) item
     @objc func onNewItem (_ notification: Notification)
     {
         guard let items = (notification.object as? NSPasteboard)?.pasteboardItems else {
@@ -82,23 +92,31 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
     }
     
+    // add new item to history
     func createKlipItem(item: NSPasteboardItem)
     {
-
+        if let copiedText = item.string(forType: .string) {
+            history.addItem(copiedText);
+            menu.update(history);
+        }
+        
     }
 
+    // add new multi-item
     func createMultiKlipItem(items: [NSPasteboardItem])
     {
         for item in items {
 
         }
     }
-    
+
+    // paste item
     func paste()
     {
         
     }
     
+    // set menubar icon
     func setIcon(icon: Icon, config: NSImage.SymbolConfiguration?)
     {
         if let button = statusItem.button
@@ -126,6 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
     }
     
+    // pop item from current cursor
     func pop ()
     {
         // Pop (paste) from current cursor. Popped items are not removed. Cursor++
@@ -133,6 +152,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         setCursor(num: cursor + 1)
     }
     
+    // push item to cursor/list
     func push ()
     {
         // Cursor doesn't change. All existing copy history / stack items get pushed down
@@ -140,6 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             // EXAMPLE: itemLst = [0:"a", 1:"b", 2:"c"]; cursor = 1; push("d"); itemLst == [0:"a", 1:"d", 2:"b", 3:"c"]
     }
     
+    // clear current list
     func clear ()
     {
         
@@ -169,111 +190,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
     }
     
-    @objc func triggerZero() {
-        changeStatusBarButton(number: 0)
-    }
-    
-    @objc func triggerOne() {
-        changeStatusBarButton(number: 1)
-    }
-    
-    @objc func triggerTwo() {
-        changeStatusBarButton(number: 2)
-    }
-    
-    @objc func triggerThree() {
-        changeStatusBarButton(number: 3)
-    }
-    
-    @objc func triggerFour() {
-        changeStatusBarButton(number: 4)
-    }
-    
-    @objc func triggerFive() {
-        changeStatusBarButton(number: 5)
-    }
-    
-    @objc func triggerSix() {
-        changeStatusBarButton(number: 6)
-    }
-    
-    @objc func triggerSeven() {
-        changeStatusBarButton(number: 7)
-    }
-    
-    @objc func triggerEight() {
-        changeStatusBarButton(number: 8)
-    }
-    
-    @objc func triggerNine() {
-        changeStatusBarButton(number: 9)
-    }
-    
-    private func changeStatusBarButton (number: Int)
+    func changeStatusBarButton (number: Int)
     {
         if let button = statusItem.button {
             button.image = NSImage(systemSymbolName: "\(number).circle", accessibilityDescription: number.description)
         }
     }
-    
-    func setupMenus ()
-    {
-        let menu = PasteMenu()
-        
-        menu.addItem(NSMenuItem(
-            title: "Stack",
-            action: #selector(toggleStack),
-            keyEquivalent: "p"
-        ))
-        
-        menu.addItem(NSMenuItem.separator())
-        
-        let one = NSMenuItem(
-            title: "One",
-            action: #selector(triggerOne),
-            keyEquivalent: "1"
-        )
-        menu.addItem(one)
-        
-        let two = NSMenuItem(
-            title: "Two",
-            action: #selector(triggerTwo),
-            keyEquivalent: "2"
-        )
-        menu.addItem(two)
-        
-        let three = NSMenuItem(
-            title: "Three",
-            action: #selector(triggerThree),
-            keyEquivalent: "3"
-        )
-        menu.addItem(three)
-        
-        let four = NSMenuItem(
-            title: "Four",
-            action: #selector(triggerFour),
-            keyEquivalent: "4"
-        )
-        menu.addItem(four)
-        
-        let five = NSMenuItem(
-            title: "Five",
-            action: #selector(triggerFive),
-            keyEquivalent: "5"
-        )
-        menu.addItem(five)
-        
-        menu.addItem(NSMenuItem.separator())
-        
-        menu.addItem(NSMenuItem(
-            title: "Quit",
-            action: #selector(NSApplication.terminate(_:)),
-            keyEquivalent: "q"
-        ))
-        
-        statusItem.menu = menu
-    }
-    
 
 }
 
