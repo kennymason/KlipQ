@@ -84,12 +84,13 @@ class AppDelegate: NSObject, NSApplicationDelegate
             return
         }
         
-        if (items.count == 1) {
-            createKlipItem(item: items[0])
-        }
-        if (items.count > 1) {
-            createMultiKlipItem(items: items)
-        }
+        createKlipItem(item: items[0])
+//        if (items.count == 1) {
+//            createKlipItem(item: items[0])
+//        }
+//        if (items.count > 1) {
+//            createMultiKlipItem(items: items)
+//        }
     }
     
     // add new item to history
@@ -99,18 +100,20 @@ class AppDelegate: NSObject, NSApplicationDelegate
             if copiedText != history.getItem(at: cursor - 1) {
                 history.addItem(copiedText);
                 menu.update(history);
+                
+                cursor = 1;
+                changeStatusBarButton(number: cursor);
             }
         }
-        
     }
 
     // add new multi-item
-    func createMultiKlipItem(items: [NSPasteboardItem])
-    {
-        for item in items {
-
-        }
-    }
+//    func createMultiKlipItem(items: [NSPasteboardItem])
+//    {
+//        for item in items {
+//
+//        }
+//    }
 
     // handling menu item actions
     @objc func trigger(_ sender: NSMenuItem) {
@@ -118,7 +121,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
         let index = sender.tag
         
         cursor = index;
-        
         changeStatusBarButton(number: index);
         
         // copy item to pasteboard
@@ -153,28 +155,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
                 button.image?.withSymbolConfiguration(config!)
             }
         }
-    }
-    
-    // pop item from current cursor
-    func pop ()
-    {
-        // Pop (paste) from current cursor. Popped items are not removed. Cursor++
-//        paste()
-        setCursor(num: cursor + 1)
-    }
-    
-    // push item to cursor/list
-    func push ()
-    {
-        // Cursor doesn't change. All existing copy history / stack items get pushed down
-            // IF the current cursor is not at 0, items above the cursor do not get moved
-            // EXAMPLE: itemLst = [0:"a", 1:"b", 2:"c"]; cursor = 1; push("d"); itemLst == [0:"a", 1:"d", 2:"b", 3:"c"]
-    }
-    
-    // clear current list
-    func clear ()
-    {
-        
     }
     
     @objc func setCursor (num: Int)

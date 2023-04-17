@@ -35,14 +35,14 @@ class PasteMenu : NSMenu {
     
     func initMenu ()
     {
-        // add mode toggle
-        self.addItem(NSMenuItem(
-            title: "Stack",
-            action: #selector(appD.toggleStack),
-            keyEquivalent: "p"
-        ))
-        
-        self.addItem(NSMenuItem.separator())
+//        // add mode toggle
+//        self.addItem(NSMenuItem(
+//            title: "Stack",
+//            action: #selector(appD.toggleStack),
+//            keyEquivalent: "p"
+//        ))
+//
+//        self.addItem(NSMenuItem.separator())
         
         // create menu items - allows for 9 entries
         for i in 1...9 {
@@ -64,8 +64,8 @@ class PasteMenu : NSMenu {
     // menu changes
     func update (_ history: History) {
         for i in 0..<min(history.count, 9) {
-            self.items[i + 2].title = trimString(history.getItem(at: i)!);
-            self.items[i + 2].isEnabled = true;
+            self.items[i].title = trimString(history.getItem(at: i)!);
+            self.items[i].isEnabled = true;
         }
     }
     
