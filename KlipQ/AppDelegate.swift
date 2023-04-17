@@ -53,14 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         // sets icon for statusItem
         //TODO: clean up initial icon configuration
         // macOS 13+ only - "list.bullet.clipboard" beta SF Symbol
-        menubarIcon = NSImage(
-            systemSymbolName: "paperclip",
-            accessibilityDescription: "clipboard"
-        )
-        iconConfig = NSImage.SymbolConfiguration(scale: .large) //pointSize: 15, weight: .regular,
-        if let button = statusItem.button {
-            button.image = menubarIcon.withSymbolConfiguration(iconConfig)
-        }
+        setIcon(number: 1);
         
         // creates menu
         menu = PasteMenu();
@@ -102,7 +95,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
                 menu.update(history);
                 
                 cursor = 1;
-                changeStatusBarButton(number: cursor);
+                setIcon(number: cursor);
             }
         }
     }
@@ -121,7 +114,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         let index = sender.tag
         
         cursor = index;
-        changeStatusBarButton(number: index);
+        setIcon(number: index);
         
         // copy item to pasteboard
         let pasteboard = NSPasteboard.general
@@ -181,10 +174,21 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
     }
     
-    func changeStatusBarButton (number: Int)
-    {
-        if let button = statusItem.button {
-            button.image = NSImage(systemSymbolName: "\(number).circle", accessibilityDescription: number.description)
+    func setIcon (number: Int) {
+        if number == 1 {
+            menubarIcon = NSImage(
+                systemSymbolName: "paperclip",
+                accessibilityDescription: "clipboard"
+            )
+            iconConfig = NSImage.SymbolConfiguration(scale: .large) //pointSize: 15, weight: .regular,
+            if let button = statusItem.button {
+                button.image = menubarIcon.withSymbolConfiguration(iconConfig)
+            }
+        }
+        else {
+            if let button = statusItem.button {
+                button.image = NSImage(systemSymbolName: "\(number).circle", accessibilityDescription: number.description)
+            }
         }
     }
 
