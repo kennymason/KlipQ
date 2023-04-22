@@ -43,7 +43,7 @@ class PasteMenu : NSMenu {
 //        ))
 //
 //        self.addItem(NSMenuItem.separator())
-        
+
         // create menu items - allows for 9 entries
         for i in 1...9 {
             let menuItem = NSMenuItem(title: "", action: #selector(appD.trigger(_:)), keyEquivalent: "\(i)")
@@ -53,6 +53,20 @@ class PasteMenu : NSMenu {
         
         self.addItem(NSMenuItem.separator())
         
+        self.addItem(NSMenuItem(
+            title: "Previous Item",
+            action: #selector(appD.previousItem),
+            keyEquivalent: "p"
+        ))
+        
+        self.addItem(NSMenuItem(
+            title: "Next Item",
+            action: #selector(appD.nextItem),
+            keyEquivalent: "n"
+        ))
+        
+        self.addItem(NSMenuItem.separator())
+
         self.addItem(NSMenuItem(
             title: "Quit",
             action: #selector(NSApplication.terminate(_:)),

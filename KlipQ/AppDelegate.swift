@@ -107,19 +107,46 @@ class AppDelegate: NSObject, NSApplicationDelegate
 //
 //        }
 //    }
+    
+    func copyToPasteboard() {
+        setIcon(number: cursor);
+        
+        // copy item to pasteboard
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(history.getItem(at: cursor - 1) ?? "", forType: .string)
+        
+//        if cursor == 1 {
+//            menu.items[10].isEnabled = false;
+//        }
+//        else {
+//            menu.items[10].isEnabled = false;
+//        }
+    }
 
     // handling menu item actions
     @objc func trigger(_ sender: NSMenuItem) {
         // Handle menu item action here
         let index = sender.tag
-        
         cursor = index;
-        setIcon(number: index);
         
-        // copy item to pasteboard
-        let pasteboard = NSPasteboard.general
-        pasteboard.clearContents()
-        pasteboard.setString(history.getItem(at: index - 1) ?? "", forType: .string)
+        copyToPasteboard();
+    }
+    
+    // handling next item action
+    @objc func previousItem(_ sender: NSMenuItem) {
+        if cursor > 1 {
+            cursor = cursor - 1;
+            
+            copyToPasteboard();
+        }
+    }
+    
+    // handling next item action
+    @objc func nextItem(_ sender: NSMenuItem) {
+        cursor = cursor + 1;
+        
+        copyToPasteboard();
     }
     
     // set menubar icon
