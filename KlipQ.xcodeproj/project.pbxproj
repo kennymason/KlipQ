@@ -11,6 +11,7 @@
 		9312D6BD29EC9EFD0067F1AB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312D6BC29EC9EFD0067F1AB /* History.swift */; };
 		9358D9242886470400BC9441 /* PasteMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9358D9232886470400BC9441 /* PasteMenu.swift */; };
 		9358D9262886630900BC9441 /* PasteboardPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9358D9252886630900BC9441 /* PasteboardPoller.swift */; };
+		93779CC529F49BF0001F3262 /* GlobalShortcutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93779CC429F49BF0001F3262 /* GlobalShortcutHandler.swift */; };
 		93858BCA287E39DA0033D140 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93858BC9287E39DA0033D140 /* AppDelegate.swift */; };
 		93858BCC287E39DA0033D140 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93858BCB287E39DA0033D140 /* ViewController.swift */; };
 		93858BCE287E39DC0033D140 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93858BCD287E39DC0033D140 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		9312D6BC29EC9EFD0067F1AB /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		9358D9232886470400BC9441 /* PasteMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteMenu.swift; sourceTree = "<group>"; };
 		9358D9252886630900BC9441 /* PasteboardPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardPoller.swift; sourceTree = "<group>"; };
+		93779CC429F49BF0001F3262 /* GlobalShortcutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalShortcutHandler.swift; sourceTree = "<group>"; };
 		93858BC6287E39DA0033D140 /* KlipQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KlipQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93858BC9287E39DA0033D140 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93858BCB287E39DA0033D140 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				93858BD2287E39DC0033D140 /* KlipQ.entitlements */,
 				93858BD8287E3A690033D140 /* main.swift */,
 				9358D9232886470400BC9441 /* PasteMenu.swift */,
+				93779CC429F49BF0001F3262 /* GlobalShortcutHandler.swift */,
 				9358D9252886630900BC9441 /* PasteboardPoller.swift */,
 			);
 			path = KlipQ;
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9358D9262886630900BC9441 /* PasteboardPoller.swift in Sources */,
+				93779CC529F49BF0001F3262 /* GlobalShortcutHandler.swift in Sources */,
 				9358D9242886470400BC9441 /* PasteMenu.swift in Sources */,
 				9312D6BD29EC9EFD0067F1AB /* History.swift in Sources */,
 				93858BCC287E39DA0033D140 /* ViewController.swift in Sources */,

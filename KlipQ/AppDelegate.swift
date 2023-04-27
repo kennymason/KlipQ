@@ -40,6 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     private var menu: PasteMenu!
     private var history: History!
+    
+//    var hotKeyHandler: HotKeyHandler?
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
@@ -61,12 +63,15 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         // initialize history array
         history = History();
+        
+        // initialize hot key listening
+//        hotKeyHandler = HotKeyHandler()
     }
     
     // shutdown processes
     func applicationWillTerminate(_ notification: Notification)
     {
-        // TODO - tear down app, invalidate timers (!!!)
+//        hotKeyHandler = nil
         poller.invalidate()
     }
 
@@ -126,12 +131,19 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
     // handling menu item actions
     @objc func trigger(_ sender: NSMenuItem) {
-        // Handle menu item action here
         let index = sender.tag
         cursor = index;
         
         copyToPasteboard();
     }
+    
+    // when triggered by hotkey (hidden menu item)
+//    @objc func hotTrigger(_ sender: NSMenuItem) {
+//        let index = Int(sender.title)
+//        cursor = index ?? 1;
+//
+//        copyToPasteboard();
+//    }
     
     // handling next item action
     @objc func previousItem(_ sender: NSMenuItem) {
@@ -181,12 +193,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
     {
         cursor = num
         
-        switch mode {
-        case Mode.stack:
-            setIcon(icon: Icon.number(cursor), config: nil)
-        default:
-            setIcon(icon: Icon.none, config: nil)
-        }
+//        switch mode {
+//        case Mode.stack:
+//            setIcon(icon: Icon.number(cursor), config: nil)
+//        default:
+//            setIcon(icon: Icon.none, config: nil)
+//        }
     }
     
     @objc func toggleStack ()

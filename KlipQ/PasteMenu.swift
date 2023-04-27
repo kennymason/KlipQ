@@ -53,6 +53,14 @@ class PasteMenu : NSMenu {
         
         self.addItem(NSMenuItem.separator())
         
+        // add hidden menu items to use as hotkeys for history items
+//        for i in 1...9 {
+//            let menuItem = NSMenuItem(title: "\(i)", action: #selector(appD.hotTrigger(_:)), keyEquivalent: "")
+////            menuItem.isHidden = true
+//            self.addItem(menuItem);
+//        }
+
+        
         self.addItem(NSMenuItem(
             title: "Previous Item",
             action: #selector(appD.previousItem),
