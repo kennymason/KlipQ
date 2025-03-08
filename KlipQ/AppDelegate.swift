@@ -82,7 +82,11 @@ class AppDelegate: NSObject, NSApplicationDelegate
             return
         }
         
-        createKlipItem(item: items[0])
+        if !items.isEmpty {
+            createKlipItem(item: items[0])
+        } else {
+            print("No items found in the pasteboard.")
+        }
 //        if (items.count == 1) {
 //            createKlipItem(item: items[0])
 //        }

@@ -46,10 +46,15 @@ class PasteMenu : NSMenu {
 
         // create menu items - allows for 9 entries
         for i in 1...9 {
-            // A space is required for the title because row height is determined by content, so an empty string would give the row no height
-            let menuItem = NSMenuItem(title: " ", action: #selector(appD.trigger(_:)), keyEquivalent: "\(i)")
-            menuItem.tag = i;
-            self.addItem(menuItem);
+            let menuItem = NSMenuItem(title: "", action: #selector(appD.trigger(_:)), keyEquivalent: "\(i)")
+            menuItem.tag = i
+            
+            // A space is required for the title because row height is determined by content, so an empty string would give the row no height. We use an NSAttributedString to set the height via styling. Without either of these, empty menu items would be misaligned
+            let attributedTitle = NSMutableAttributedString(string: " ")
+            attributedTitle.addAttribute(.font, value: NSFont.systemFont(ofSize: 14), range: NSRange(location: 0, length: attributedTitle.length))
+            menuItem.attributedTitle = attributedTitle
+
+            self.addItem(menuItem)
         }
         
         self.addItem(NSMenuItem.separator())
@@ -87,7 +92,8 @@ class PasteMenu : NSMenu {
     // menu changes
     func update (_ history: History) {
         for i in 0..<min(history.count, 9) {
-            self.items[i].title = trimString(history.getItem(at: i)!);
+            // update menu item with copied text. need to wrap our string in NSAttributedString because we needed to use attributed strings for titles to give them a fixed size when empty
+            self.items[i].attributedTitle = NSAttributedString(string: trimString(history.getItem(at: i)!));
             self.items[i].isEnabled = true;
         }
     }
