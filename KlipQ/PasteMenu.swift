@@ -45,11 +45,16 @@ class PasteMenu : NSMenu {
 //        self.addItem(NSMenuItem.separator())
 
         // create menu items - allows for 9 entries
+//        for i in 1...9 {
+//            // A space is required for the title because row height is determined by content, so an empty string would give the row no height
+//            let menuItem = NSMenuItem(title: " ", action: #selector(appD.trigger(_:)), keyEquivalent: "\(i)")
+//            menuItem.tag = i;
+//            self.addItem(menuItem);
+//        }
         for i in 1...9 {
-            // A space is required for the title because row height is determined by content, so an empty string would give the row no height
-            let menuItem = NSMenuItem(title: " ", action: #selector(appD.trigger(_:)), keyEquivalent: "\(i)")
-            menuItem.tag = i;
-            self.addItem(menuItem);
+            let menuItem = NSMenuItem(title: " ", action: #selector(appD.trigger(_:)), keyEquivalent: "")
+            menuItem.tag = i
+            self.addItem(menuItem)
         }
         
         self.addItem(NSMenuItem.separator())

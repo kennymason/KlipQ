@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		93068D71289E00C60063CDC9 /* Notification+Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93068D70289E00C60063CDC9 /* Notification+Pasteboard.swift */; };
 		9312D6BD29EC9EFD0067F1AB /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312D6BC29EC9EFD0067F1AB /* History.swift */; };
+		933CD70B2D76A57F00F4A977 /* GlobalHotkeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CD70A2D76A56F00F4A977 /* GlobalHotkeyHandler.swift */; };
 		9358D9242886470400BC9441 /* PasteMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9358D9232886470400BC9441 /* PasteMenu.swift */; };
 		9358D9262886630900BC9441 /* PasteboardPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9358D9252886630900BC9441 /* PasteboardPoller.swift */; };
 		93779CC529F49BF0001F3262 /* GlobalShortcutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93779CC429F49BF0001F3262 /* GlobalShortcutHandler.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		93068D70289E00C60063CDC9 /* Notification+Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Pasteboard.swift"; sourceTree = "<group>"; };
 		9312D6BC29EC9EFD0067F1AB /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		933CD70A2D76A56F00F4A977 /* GlobalHotkeyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyHandler.swift; sourceTree = "<group>"; };
 		9358D9232886470400BC9441 /* PasteMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteMenu.swift; sourceTree = "<group>"; };
 		9358D9252886630900BC9441 /* PasteboardPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardPoller.swift; sourceTree = "<group>"; };
 		93779CC429F49BF0001F3262 /* GlobalShortcutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalShortcutHandler.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		93858BC8287E39DA0033D140 /* KlipQ */ = {
 			isa = PBXGroup;
 			children = (
+				933CD70A2D76A56F00F4A977 /* GlobalHotkeyHandler.swift */,
 				93068D72289E04C70063CDC9 /* Extensions */,
 				93858BDA287E41B70033D140 /* Info.plist */,
 				93858BC9287E39DA0033D140 /* AppDelegate.swift */,
@@ -161,6 +164,7 @@
 				9312D6BD29EC9EFD0067F1AB /* History.swift in Sources */,
 				93858BCC287E39DA0033D140 /* ViewController.swift in Sources */,
 				93858BCA287E39DA0033D140 /* AppDelegate.swift in Sources */,
+				933CD70B2D76A57F00F4A977 /* GlobalHotkeyHandler.swift in Sources */,
 				93068D71289E00C60063CDC9 /* Notification+Pasteboard.swift in Sources */,
 				93858BD9287E3A690033D140 /* main.swift in Sources */,
 			);

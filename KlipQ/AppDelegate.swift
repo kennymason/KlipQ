@@ -6,6 +6,11 @@
 //
 
 import Cocoa
+import Carbon.HIToolbox
+
+// For global hotkeys
+var hotKeyRef: EventHotKeyRef?
+var hotKeyEventHandler: EventHandlerRef?
 
 class AppDelegate: NSObject, NSApplicationDelegate
 {
@@ -41,7 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     private var menu: PasteMenu!
     private var history: History!
     
-//    var hotKeyHandler: HotKeyHandler?
+    private var hotKeyHandler: GlobalHotKeyHandler?
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
@@ -49,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(onNewItem), name: .NewPasteboardItem, object: nil)
         // initialize pasteboard poller - polls the pasteboard for changes
         poller = PasteboardPoller(pasteboard: NSPasteboard .general, changeCount: -1)
-    
+        
         // sets menubar item
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         // sets icon for statusItem
@@ -65,13 +70,18 @@ class AppDelegate: NSObject, NSApplicationDelegate
         history = History();
         
         // initialize hot key listening
-//        hotKeyHandler = HotKeyHandler()
+        hotKeyHandler = GlobalHotKeyHandler()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleHotKeyNumber(_:)), name: .HotKeyNumber, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(previousHotKeyTriggered), name: .HotKeyPrevious, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(nextHotKeyTriggered), name: .HotKeyNext, object: nil)
     }
     
     // shutdown processes
     func applicationWillTerminate(_ notification: Notification)
     {
-//        hotKeyHandler = nil
+        hotKeyHandler = nil
+
         poller.invalidate()
     }
 
@@ -137,6 +147,18 @@ class AppDelegate: NSObject, NSApplicationDelegate
         copyToPasteboard();
     }
     
+    @objc func handleHotKeyNumber(_ notification: Notification) {
+        if let index = notification.object as? Int {
+            triggerHotKey(index: index)
+        }
+    }
+
+    @objc func triggerHotKey(index: Int) {
+        cursor = index
+        copyToPasteboard()
+    }
+
+    
     // when triggered by hotkey (hidden menu item)
 //    @objc func hotTrigger(_ sender: NSMenuItem) {
 //        let index = Int(sender.title)
@@ -148,15 +170,19 @@ class AppDelegate: NSObject, NSApplicationDelegate
     // handling next item action
     @objc func previousItem(_ sender: NSMenuItem) {
         if cursor > 1 {
-            cursor = cursor - 1;
-            
+            if cursor > 0 {
+                cursor -= 1
+            }
+
             copyToPasteboard();
         }
     }
     
     // handling next item action
     @objc func nextItem(_ sender: NSMenuItem) {
-        cursor = cursor + 1;
+        if cursor < history.count {
+            cursor += 1
+        }
         
         copyToPasteboard();
     }
@@ -230,6 +256,13 @@ class AppDelegate: NSObject, NSApplicationDelegate
             }
         }
     }
+    
+    @objc func previousHotKeyTriggered() {
+        previousItem(NSMenuItem()) // You can pass a dummy menu item or refactor to avoid needing it.
+    }
+
+    @objc func nextHotKeyTriggered() {
+        nextItem(NSMenuItem())
+    }
 
 }
-
