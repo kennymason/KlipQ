@@ -65,7 +65,6 @@ class PasteMenu : NSMenu {
 ////            menuItem.isHidden = true
 //            self.addItem(menuItem);
 //        }
-
         
         self.addItem(NSMenuItem(
             title: "Previous Item",
