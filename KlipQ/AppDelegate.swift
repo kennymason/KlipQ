@@ -41,6 +41,15 @@ class AppDelegate: NSObject, NSApplicationDelegate
 //    var hotKeyHandler: HotKeyHandler?
     var nextKey: HotKey!
     var prevKey: HotKey!
+    var oneKey: HotKey!
+    var twoKey: HotKey!
+    var threeKey: HotKey!
+    var fourKey: HotKey!
+    var fiveKey: HotKey!
+    var sixKey: HotKey!
+    var sevenKey: HotKey!
+    var eightKey: HotKey!
+    var nineKey: HotKey!
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
@@ -196,6 +205,15 @@ class AppDelegate: NSObject, NSApplicationDelegate
     func initializeGlobalHotkeys () {
         nextKey = HotKey(key: .n, modifiers: [.control, .option])
         prevKey = HotKey(key: .p, modifiers: [.control, .option])
+        oneKey = HotKey(key: .one, modifiers: [.control, .option])
+        twoKey = HotKey(key: .two, modifiers: [.control, .option])
+        threeKey = HotKey(key: .three, modifiers: [.control, .option])
+        fourKey = HotKey(key: .four, modifiers: [.control, .option])
+        fiveKey = HotKey(key: .five, modifiers: [.control, .option])
+        sixKey = HotKey(key: .six, modifiers: [.control, .option])
+        sevenKey = HotKey(key: .seven, modifiers: [.control, .option])
+        eightKey = HotKey(key: .eight, modifiers: [.control, .option])
+        nineKey = HotKey(key: .nine, modifiers: [.control, .option])
         
         nextKey.keyDownHandler = { [weak self] in
             self!.cursor = self!.cursor + 1;
@@ -209,6 +227,52 @@ class AppDelegate: NSObject, NSApplicationDelegate
                 self!.copyToPasteboard();
             }
         }
+        oneKey.keyDownHandler = { [weak self] in
+            self!.cursor = 1;
+
+            self!.copyToPasteboard();
+        }
+        twoKey.keyDownHandler = { [weak self] in
+            self!.cursor = 2;
+
+            self!.copyToPasteboard();
+        }
+        threeKey.keyDownHandler = { [weak self] in
+            self!.cursor = 3;
+
+            self!.copyToPasteboard();
+        }
+        fourKey.keyDownHandler = { [weak self] in
+            self!.cursor = 4;
+
+            self!.copyToPasteboard();
+        }
+        fiveKey.keyDownHandler = { [weak self] in
+            self!.cursor = 5;
+
+            self!.copyToPasteboard();
+        }
+        sixKey.keyDownHandler = { [weak self] in
+            self!.cursor = 6;
+
+            self!.copyToPasteboard();
+        }
+        sevenKey.keyDownHandler = { [weak self] in
+            self!.cursor = 7;
+
+            self!.copyToPasteboard();
+        }
+        eightKey.keyDownHandler = { [weak self] in
+            self!.cursor = 8;
+
+            self!.copyToPasteboard();
+        }
+        nineKey.keyDownHandler = { [weak self] in
+            self!.cursor = 9;
+
+            self!.copyToPasteboard();
+        }
+        
     }
 }
 
