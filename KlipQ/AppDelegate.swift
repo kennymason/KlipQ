@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import Hotkey
+import HotKey
 
 class AppDelegate: NSObject, NSApplicationDelegate
 {
@@ -39,6 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate
     private var history: History!
     
 //    var hotKeyHandler: HotKeyHandler?
+    var nextKey: HotKey!
+    var prevKey: HotKey!
 
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
@@ -62,6 +64,23 @@ class AppDelegate: NSObject, NSApplicationDelegate
         history = History();
         
         // initialize hot key listening
+        
+//        let nextKey = HotKey(key: .n, modifiers: [.command, .option])
+//        let prevKey = HotKey(key: .p, modifiers: [.command, .option])
+//        
+//        nextKey.keyDownHandler = { [weak self] in
+//            self!.cursor = self!.cursor + 1;
+//            
+//            self!.copyToPasteboard();
+//        }
+//        prevKey.keyDownHandler = { [weak self] in
+//            if self!.cursor > 1 {
+//                self!.cursor = self!.cursor - 1;
+//                
+//                self!.copyToPasteboard();
+//            }
+//        }
+        
         initializeGlobalHotkeys();
 //        hotKeyHandler = HotKeyHandler()
     }
@@ -193,11 +212,23 @@ class AppDelegate: NSObject, NSApplicationDelegate
     }
     
     func initializeGlobalHotkeys () {
-        let nextKey = HotKey(key: .n, modifiers: [.control, .option])
-        let prevKey = HotKey(key: .p, modifiers: [.control, .option])
+        nextKey = HotKey(key: .n, modifiers: [.control, .option])
+        prevKey = HotKey(key: .p, modifiers: [.control, .option])
         
-        nextKey.keyDownHandler = nextItem(nil)
-        prevKey.keyDownHandler = previousItem(nil)
+        nextKey.keyDownHandler = { [weak self] in
+            self!.cursor = self!.cursor + 1;
+
+            self!.copyToPasteboard();
+        }
+        prevKey.keyDownHandler = { [weak self] in
+            if self!.cursor > 1 {
+                self!.cursor = self!.cursor - 1;
+
+                self!.copyToPasteboard();
+            }
+        }
     }
 }
+
+
 
