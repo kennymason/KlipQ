@@ -64,25 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         history = History();
         
         // initialize hot key listening
-        
-//        let nextKey = HotKey(key: .n, modifiers: [.command, .option])
-//        let prevKey = HotKey(key: .p, modifiers: [.command, .option])
-//        
-//        nextKey.keyDownHandler = { [weak self] in
-//            self!.cursor = self!.cursor + 1;
-//            
-//            self!.copyToPasteboard();
-//        }
-//        prevKey.keyDownHandler = { [weak self] in
-//            if self!.cursor > 1 {
-//                self!.cursor = self!.cursor - 1;
-//                
-//                self!.copyToPasteboard();
-//            }
-//        }
-        
         initializeGlobalHotkeys();
-//        hotKeyHandler = HotKeyHandler()
     }
     
     // shutdown processes
