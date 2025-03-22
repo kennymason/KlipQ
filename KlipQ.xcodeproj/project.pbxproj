@@ -16,6 +16,7 @@
 		93858BCC287E39DA0033D140 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93858BCB287E39DA0033D140 /* ViewController.swift */; };
 		93858BCE287E39DC0033D140 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93858BCD287E39DC0033D140 /* Assets.xcassets */; };
 		93858BD9287E3A690033D140 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93858BD8287E3A690033D140 /* main.swift */; };
+		93C8F2532D8E413000869FFD /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 93C8F2522D8E413000869FFD /* HotKey */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C8F2532D8E413000869FFD /* HotKey in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +132,9 @@
 				Base,
 			);
 			mainGroup = 93858BBD287E39DA0033D140;
+			packageReferences = (
+				93C8F2512D8E413000869FFD /* XCRemoteSwiftPackageReference "HotKey" */,
+			);
 			productRefGroup = 93858BC7287E39DA0033D140 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -362,6 +367,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		93C8F2512D8E413000869FFD /* XCRemoteSwiftPackageReference "HotKey" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/soffes/HotKey";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		93C8F2522D8E413000869FFD /* HotKey */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93C8F2512D8E413000869FFD /* XCRemoteSwiftPackageReference "HotKey" */;
+			productName = HotKey;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 93858BBE287E39DA0033D140 /* Project object */;
 }

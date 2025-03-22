@@ -10,10 +10,6 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate
 {
     
-//    enum Cursor {
-//        case
-//    }
-    
     // pasting modes - basic, stack, queue
     enum Mode
     {
@@ -124,13 +120,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString(history.getItem(at: cursor - 1) ?? "", forType: .string)
-        
-//        if cursor == 1 {
-//            menu.items[10].isEnabled = false;
-//        }
-//        else {
-//            menu.items[10].isEnabled = false;
-//        }
     }
 
     // handling menu item actions
@@ -165,58 +154,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
         copyToPasteboard();
     }
     
-    // set menubar icon
-    func setIcon(icon: Icon, config: NSImage.SymbolConfiguration?)
-    {
-        if let button = statusItem.button
-        {
-            switch icon {
-            case let .basic(name, desc):
-                    button.image = NSImage(
-                        systemSymbolName: name,
-                        accessibilityDescription: desc
-                    )
-            case let .number(num):
-                    button.image = NSImage(
-                        systemSymbolName: "\(num).circle",
-                        accessibilityDescription: num.description
-                    )
-            default:
-                if let button = statusItem.button {
-                    button.image = menubarIcon?.withSymbolConfiguration(iconConfig)
-                }
-            }
-            
-            if (config != nil) {
-                button.image?.withSymbolConfiguration(config!)
-            }
-        }
-    }
-    
     @objc func setCursor (num: Int)
     {
         cursor = num
-        
-//        switch mode {
-//        case Mode.stack:
-//            setIcon(icon: Icon.number(cursor), config: nil)
-//        default:
-//            setIcon(icon: Icon.none, config: nil)
-//        }
     }
     
-    @objc func toggleStack ()
-    {
-        switch mode {
-        case Mode.base:
-            mode = Mode.stack
-            setCursor(num: cursor)
-        case Mode.stack:
-            mode = Mode.base
-            setCursor(num: 0)
-        }
-    }
-    
+    // set menubar icon
     func setIcon (number: Int) {
         if number == 1 {
             menubarIcon = NSImage(
@@ -234,6 +177,17 @@ class AppDelegate: NSObject, NSApplicationDelegate
             }
         }
     }
-
+    
+    @objc func toggleStack ()
+    {
+        switch mode {
+        case Mode.base:
+            mode = Mode.stack
+            setCursor(num: cursor)
+        case Mode.stack:
+            mode = Mode.base
+            setCursor(num: 0)
+        }
+    }
 }
 
