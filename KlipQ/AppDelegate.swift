@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Hotkey
 
 class AppDelegate: NSObject, NSApplicationDelegate
 {
@@ -61,6 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         history = History();
         
         // initialize hot key listening
+        initializeGlobalHotkeys();
 //        hotKeyHandler = HotKeyHandler()
     }
     
@@ -188,6 +190,14 @@ class AppDelegate: NSObject, NSApplicationDelegate
             mode = Mode.base
             setCursor(num: 0)
         }
+    }
+    
+    func initializeGlobalHotkeys () {
+        let nextKey = HotKey(key: .n, modifiers: [.control, .option])
+        let prevKey = HotKey(key: .p, modifiers: [.control, .option])
+        
+        nextKey.keyDownHandler = nextItem(nil)
+        prevKey.keyDownHandler = previousItem(nil)
     }
 }
 
